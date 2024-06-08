@@ -1,0 +1,164 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background: linear-gradient(to bottom, #000428, #004e92);
+    color: white;
+    overflow-x: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5em;
+    margin: 0;
+}
+
+header h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5em;
+    margin: 10px 0 0;
+}
+
+.section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+    text-align: center;
+    flex-direction: column; /* 使日期和内容垂直排列 */
+}
+
+.section .date {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.section .content {
+    background: rgba(0, 0, 0, 0.8); /* 增加背景透明度 */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: calc(100% - 40px); /* 使内容框宽度占满整个页面，并留出一些内边距 */
+    backdrop-filter: blur(10px); /* 应用背景虚化效果 */
+    transition: transform 0.3s ease; /* 添加平滑的缩放效果 */
+    margin: 0 auto; /* 使内容居中 */
+    text-align: left; /* 将正文左对齐 */
+}
+
+.section.left-image .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.section.right-image .content {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.section.full-image .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section.gallery .content {
+    text-align: left;
+}
+
+.section .text {
+    flex: 1;
+    padding: 20px;
+}
+
+.section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    max-height: 400px; /* 限制图片的最大高度 */
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery-grid img {
+    flex: 1 1 calc(33.333% - 10px);
+    max-width: calc(33.333% - 10px);
+    max-height: 200px; /* 限制画廊图片的最大高度 */
+}
+
+@media (max-width: 768px) {
+    .section.left-image .content,
+    .section.right-image .content {
+        flex-direction: column;
+    }
+
+    .gallery-grid img {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    header h2 {
+        font-size: 1.2em;
+    }
+
+    .section .date {
+        font-size: 1.2em;
+        padding: 8px 16px;
+    }
+
+    .section .content {
+        padding: 20px;
+    }
+
+    .gallery-grid img {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .section img {
+        max-width: 100%;
+        height: auto;
+        max-height: 300px; /* 限制小屏幕设备上图片的最大高度 */
+    }
+}
+
+@keyframes stars {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    z-index: -1;
+    animation: stars 60s linear infinite;
+}
